@@ -1,10 +1,10 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Typewriter from "typewriter-effect";
-import ThunderCanvas from "./ThunderCanvas";
-import perfil from "../assets/profile.webp";
-import perfilMobile from "../assets/perfilMobile.webp";
-import { FaRocket, FaEnvelope } from "react-icons/fa";
+import React, { useState, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Typewriter from 'typewriter-effect';
+import ThunderCanvas from './ThunderCanvas';
+import perfil from '../assets/profile.webp';
+import perfilMobile from '../assets/perfilMobile.webp';
+import { FaRocket, FaEnvelope } from 'react-icons/fa';
 
 export default function Hero() {
   const [typing, setTyping] = useState(false);
@@ -26,8 +26,8 @@ export default function Hero() {
 
   useEffect(() => {
     updateLettersPositions();
-    window.addEventListener("resize", updateLettersPositions);
-    return () => window.removeEventListener("resize", updateLettersPositions);
+    window.addEventListener('resize', updateLettersPositions);
+    return () => window.removeEventListener('resize', updateLettersPositions);
   }, [updateLettersPositions]);
 
   useEffect(() => {
@@ -73,14 +73,14 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           className="max-w-3xl"
         >
           {/* Texto estático para LCP */}
           {!typing && (
             <div className="mb-6">
               <h3 className="bg-gradient-to-r from-white text-transparent via-red-500 to-purple-600 bg-clip-text text-2xl sm:text-3xl font-semibold">
-                Olá, sou Wendley...
+                Olá, eu sou Wendley 👋
               </h3>
             </div>
           )}
@@ -95,9 +95,9 @@ export default function Hero() {
             >
               <h3 className="bg-gradient-to-r from-white text-transparent via-red-500 to-purple-600 bg-clip-text text-2xl sm:text-3xl font-semibold">
                 <Typewriter
-                  onInit={(typewriter) => {
+                  onInit={typewriter => {
                     typewriter
-                      .typeString("Olá, sou Wendley...")
+                      .typeString('Olá, eu sou Wendley 👋')
                       .pauseFor(500)
                       .callFunction(handleTypewriterDone)
                       .start();
@@ -106,14 +106,14 @@ export default function Hero() {
                     autoStart: true,
                     loop: false,
                     delay: 50,
-                    cursor: "|",
+                    cursor: '|',
                   }}
                 />
               </h3>
             </motion.div>
           )}
 
-          {/* Cargo: Desenvolvedor Web */}
+          {/* Cargo — efeito de digitar */}
           <AnimatePresence>
             {showRole && (
               <>
@@ -122,19 +122,21 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="mb-8"
+                  className="mb-8 min-h-[4.5rem] sm:min-h-[6rem]"
                 >
-                  <h1 className="font-sans text-4xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-white via-red-500 to-purple-600 bg-clip-text text-transparent">
+                  <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-red-500 to-purple-600 bg-clip-text text-transparent leading-tight">
                     <Typewriter
-                      onInit={(typewriter) => {
-                        typewriter.typeString("Desenvolvedor Web").start();
+                      onInit={typewriter => {
+                        typewriter
+                          .typeString('Desenvolvedor Front-End')
+                          .start();
                       }}
                       options={{
                         autoStart: true,
                         loop: true,
-                        delay: 60,
-                        cursor: "|",
-                        pauseFor: 3000,
+                        delay: 58,
+                        cursor: '|',
+                        pauseFor: 2800,
                       }}
                     />
                   </h1>
@@ -143,10 +145,13 @@ export default function Hero() {
             )}
           </AnimatePresence>
 
-          {/* Descrição */}
-          <p className="text-gray-300 text-sm sm:text-xl leading-relaxed max-w-2xl">
-            Criando interfaces responsivas e funcionais com tecnologias
-            modernas, focando em experiências únicas e memoráveis.
+          {/* Pitch curto — detalhes na seção Sobre */}
+          <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl">
+            Formado em Sistemas de Informação · Front-end com{' '}
+            <span className="text-gray-100">React</span>,{' '}
+            <span className="text-gray-100">Tailwind</span> e{' '}
+            <span className="text-gray-100">Firebase</span> · interfaces
+            rápidas, responsivas e código organizado.
           </p>
 
           {/* Botões */}

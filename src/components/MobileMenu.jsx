@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { Sun, Moon, X } from "lucide-react";
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Sun, Moon, X } from 'lucide-react';
 
 const MobileMenu = ({
   links,
@@ -22,28 +22,28 @@ const MobileMenu = ({
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   // Detectando o clique fora do menu
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside = e => {
       if (backdropRef.current && !backdropRef.current.contains(e.target)) {
         onClose();
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onClose]);
 
-  const handleLinkClick = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const handleLinkClick = id => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setActiveLink(id);
     onClose();
   };
@@ -61,7 +61,7 @@ const MobileMenu = ({
         duration: 0.3,
         staggerChildren: 0.05,
         staggerDirection: -1,
-        when: "afterChildren",
+        when: 'afterChildren',
       },
     },
     visible: {
@@ -71,7 +71,7 @@ const MobileMenu = ({
         duration: 0.3,
         staggerChildren: 0.08,
         delayChildren: 0.1,
-        when: "beforeChildren",
+        when: 'beforeChildren',
       },
     },
   };
@@ -105,11 +105,11 @@ const MobileMenu = ({
           initial="hidden"
           animate="visible"
           exit="hidden"
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
           className={`rounded-xl overflow-hidden border shadow-xl w-full max-w-md outline-none ${
             scrolled
-              ? "bg-white/90 dark:bg-black/90 backdrop-blur-xl shadow-xl"
-              : "bg-white dark:bg-black"
+              ? 'bg-white/90 dark:bg-black/90 backdrop-blur-xl shadow-xl'
+              : 'bg-white dark:bg-black'
           } border-gray-200 dark:border-gray-800`}
         >
           <div className="p-5">
@@ -126,15 +126,15 @@ const MobileMenu = ({
                     onClick={() => handleLinkClick(id)}
                     className={`group relative flex items-center justify-center w-full py-3 px-4 rounded-lg transition-colors duration-200 ${
                       isActive
-                        ? "bg-red-100/80 dark:bg-red-900/20 text-red-600 dark:text-red-400"
-                        : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300"
+                        ? 'bg-red-100/80 dark:bg-red-900/20 text-red-600 dark:text-red-400'
+                        : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
                     }`}
                   >
                     {isActive && (
                       <motion.span
                         layoutId="activeIndicator"
                         transition={{
-                          type: "spring",
+                          type: 'spring',
                           stiffness: 300,
                           damping: 20,
                         }}
@@ -183,7 +183,7 @@ const MobileMenu = ({
             variants={itemVariants}
             className="bg-gradient-to-r from-red-500/10 via-purple-500/10 to-indigo-500/10 dark:from-red-700/20 dark:via-purple-700/20 dark:to-indigo-700/20 px-5 py-4 text-center text-sm text-gray-600 dark:text-gray-400"
           >
-            © 2025 Wendley.dev
+            © 2026 Wendley.dev
           </motion.div>
         </motion.div>
       </div>

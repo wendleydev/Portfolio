@@ -1,25 +1,61 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-export default function ThunderCanvas({ x, y }) {
-  const canvasRef = useRef();
+/**
+ * Raios decorativos no hero. Em viewport estreito (&lt;640px) e com
+ * prefers-reduced-motion o componente não renderiza — melhor para
+ * acessibilidade e desempenho em mobile.
+ */
+export default function ThunderCanvas({ lettersPositions = [] }) {
+  const canvasRef = useRef(null);
+  const [effectsEnabled, setEffectsEnabled] = useState(false);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+    const isNarrowViewport = window.matchMedia("(max-width: 639px)");
+
+    const update = () => {
+      setEffectsEnabled(
+        !prefersReducedMotion.matches && !isNarrowViewport.matches,
+      );
+    };
+
+    update();
+    prefersReducedMotion.addEventListener("change", update);
+    isNarrowViewport.addEventListener("change", update);
+    return () => {
+      prefersReducedMotion.removeEventListener("change", update);
+      isNarrowViewport.removeEventListener("change", update);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!effectsEnabled) return undefined;
+
     const canvas = canvasRef.current;
+    if (!canvas) return undefined;
+
     const ctx = canvas.getContext("2d");
+    let w;
+    let h;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function sizeCanvas() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+    }
 
-    const w = canvas.width;
-    const h = canvas.height;
+    sizeCanvas();
 
     function Thunder(options = {}) {
       this.lifespan = options.lifespan || Math.round(Math.random() * 10 + 30);
       this.maxlife = this.lifespan;
       this.color = options.color || "#fefefe";
       this.glow = options.glow || "#2323fe";
-      this.x = options.x || Math.random() * w;
-      this.y = options.y || Math.random() * h;
+      this.x = options.x ?? Math.random() * w;
+      this.y = options.y ?? Math.random() * h;
       this.width = options.width || 2;
       this.direct = options.direct || Math.random() * Math.PI * 2;
       this.max = options.max || Math.round(Math.random() * 10 + 28);
@@ -36,17 +72,17 @@ export default function ThunderCanvas({ x, y }) {
       };
 
       this.draw = function () {
-        let [x, y] = [this.x, this.y];
+        let [sx, sy] = [this.x, this.y];
 
         ctx.beginPath();
-        ctx.moveTo(x, y);
+        ctx.moveTo(sx, sy);
 
         for (let i = 0; i < this.segments.length; i++) {
           let seg = this.segments[i];
           seg.direct += seg.change;
-          x += Math.cos(seg.direct) * seg.length;
-          y += Math.sin(seg.direct) * seg.length;
-          ctx.lineTo(x, y);
+          sx += Math.cos(seg.direct) * seg.length;
+          sy += Math.sin(seg.direct) * seg.length;
+          ctx.lineTo(sx, sy);
         }
 
         ctx.strokeStyle = this.color;
@@ -60,12 +96,28 @@ export default function ThunderCanvas({ x, y }) {
 
     const thunders = [];
 
+    function spawnPoint() {
+      if (lettersPositions?.length > 0) {
+        const p =
+          lettersPositions[
+            Math.floor(Math.random() * lettersPositions.length)
+          ];
+        return { x: p.x, y: p.y };
+      }
+      return { x: w * 0.35, y: h * 0.35 };
+    }
+
+    let cancelled = false;
+    let rafId = 0;
+
     function animate() {
+      if (cancelled) return;
+
       ctx.clearRect(0, 0, w, h);
 
-      // Gera raios próximos ao ponto (x, y) passado como props
-      if (Math.random() < 0.1) {
-        thunders.push(new Thunder({ x, y }));
+      if (Math.random() < 0.08) {
+        const pt = spawnPoint();
+        thunders.push(new Thunder({ x: pt.x, y: pt.y }));
       }
 
       for (let i = thunders.length - 1; i >= 0; i--) {
@@ -77,15 +129,30 @@ export default function ThunderCanvas({ x, y }) {
         }
       }
 
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     }
 
     animate();
-  }, [x, y]);
+
+    const onResize = () => {
+      sizeCanvas();
+    };
+
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [lettersPositions, effectsEnabled]);
+
+  if (!effectsEnabled) return null;
 
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden
       className="absolute inset-0 z-20 pointer-events-none"
     ></canvas>
   );

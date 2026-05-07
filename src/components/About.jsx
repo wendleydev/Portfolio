@@ -1,6 +1,6 @@
-import React from "react";
-import { motion } from "framer-motion";
-import perfil2 from "../assets/perfil2.webp";
+import React from 'react';
+import { motion } from 'framer-motion';
+import perfil2 from '../assets/perfil2.webp';
 import {
   Code2,
   Briefcase,
@@ -12,7 +12,7 @@ import {
   Brain,
   Coffee,
   Sparkles,
-} from "lucide-react";
+} from 'lucide-react';
 
 // Animação do container principal
 const containerVariants = {
@@ -41,28 +41,28 @@ const itemVariants = {
 // Lista de tecnologias que serão exibidas
 const techs = [
   {
-    name: "React",
-    color: "from-blue-500 to-blue-600",
+    name: 'React',
+    color: 'from-blue-500 to-blue-600',
     icon: Code2,
-    description: "Desenvolvimento de interfaces modernas e reativas",
+    description: 'Desenvolvimento de interfaces modernas e reativas',
   },
   {
-    name: "Tailwind CSS",
-    color: "from-teal-500 to-teal-600",
+    name: 'Tailwind CSS',
+    color: 'from-teal-500 to-teal-600',
     icon: Paintbrush,
-    description: "Estilização rápida e responsiva",
+    description: 'Estilização rápida e responsiva',
   },
   {
-    name: "JavaScript",
-    color: "from-yellow-500 to-yellow-600",
+    name: 'JavaScript',
+    color: 'from-yellow-500 to-yellow-600',
     icon: FileCode2,
-    description: "Programação dinâmica e interativa",
+    description: 'Programação dinâmica e interativa',
   },
   {
-    name: "Node.js",
-    color: "from-green-500 to-green-600",
+    name: 'Firebase',
+    color: 'from-amber-500 to-orange-600',
     icon: Server,
-    description: "Plataforma escalável para aplicações server-side",
+    description: 'Auth, Firestore e integrações quando o back é gerenciado (BaaS)',
   },
 ];
 
@@ -70,18 +70,18 @@ const techs = [
 const skills = [
   {
     icon: Brain,
-    title: "Resolução de Problemas",
-    description: "Capacidade analítica para encontrar soluções eficientes",
+    title: 'Resolução de Problemas',
+    description: 'Capacidade analítica para encontrar soluções eficientes',
   },
   {
     icon: Coffee,
-    title: "Aprendizado Contínuo",
-    description: "Sempre em busca de novos conhecimentos e tecnologias",
+    title: 'Aprendizado Contínuo',
+    description: 'Sempre em busca de novos conhecimentos e tecnologias',
   },
   {
     icon: Sparkles,
-    title: "Criatividade",
-    description: "Desenvolvimento de soluções inovadoras e intuitivas",
+    title: 'Criatividade',
+    description: 'Desenvolvimento de soluções inovadoras e intuitivas',
   },
 ];
 
@@ -113,9 +113,11 @@ export default function About() {
           <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent mb-4">
             Sobre Mim
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Construo soluções com estilo e propósito — do zero ao
-            extraord1nário.
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Atuo no desenvolvimento Front-End utilizando React.js e JavaScript,
+            criando interfaces responsivas e integradas com APIs REST. Busco
+            construir aplicações com foco em clareza visual, experiência do
+            usuário e código limpo.
           </p>
         </motion.div>
 
@@ -126,7 +128,7 @@ export default function About() {
             initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
             className="relative group"
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-300" />
@@ -159,21 +161,29 @@ export default function About() {
                   <GraduationCap className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                     Formação Acadêmica
                   </h3>
-                  <p className="text-gray-700 text-sm dark:text-gray-300">
-                    Cursando bacharelado em{" "}
-                    <span className="font-semibold text-purple-600 dark:text-purple-400">
-                      Sistemas de Informação
-                    </span>{" "}
-                    e sou formado em{" "}
-                    <span className="font-semibold text-purple-600 dark:text-purple-400">
-                      Técnico em Administração
-                    </span>{" "}
-                    pelo IFNMG, onde desenvolvo uma sólida base tanto em
-                    tecnologia quanto em gestão, com foco em soluções inovadoras
-                    e eficiência organizacional.
+                  <ul className="text-gray-700 text-sm dark:text-gray-300 space-y-2 mb-3">
+                    <li>
+                      🎓 Bacharel em{' '}
+                      <span className="font-semibold text-purple-600 dark:text-purple-400">
+                        Sistemas de Informação
+                      </span>{' '}
+                      — IFNMG
+                    </li>
+                    <li>
+                      🎓 Técnico em{' '}
+                      <span className="font-semibold text-purple-600 dark:text-purple-400">
+                        Administração
+                      </span>{' '}
+                      — IFNMG
+                    </li>
+                  </ul>
+                  <p className="text-gray-700 text-sm dark:text-gray-300 leading-relaxed">
+                    Minha formação combina tecnologia, lógica de desenvolvimento e
+                    visão organizacional, contribuindo para uma abordagem prática na
+                    construção de soluções.
                   </p>
                 </div>
               </div>
@@ -193,24 +203,33 @@ export default function About() {
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                     Experiência
                   </h3>
-                  <p className="text-gray-700 text-sm dark:text-gray-300">
-                    Atualmente estagiário{" "}
-                    <span className="font-semibold text-purple-600 dark:text-purple-400">
-                      {" "}
-                      front-end{" "}
-                    </span>{" "}
-                    na{" "}
-                    <span className="font-semibold text-purple-600 dark:text-purple-400">
-                      Mundiware,{" "}
-                    </span>{" "}
-                    aplicando tecnologias modernas com foco em usabilidade.
-                    Atuei por 8 anos como operador de produção na{" "}
-                    <span className="font-semibold text-purple-600 dark:text-purple-400">
-                      Companhia de Fiação e Tecidos Santo Antônio
-                    </span>
-                    , desenvolvendo responsabilidade, trabalho em equipe e
-                    atenção aos detalhes.
-                  </p>
+                  <div className="text-gray-700 text-sm dark:text-gray-300 space-y-3 leading-relaxed">
+                    <p>
+                      Atuei como{' '}
+                      <span className="font-semibold text-purple-600 dark:text-purple-400">
+                        estagiário Front-End na Mundiware
+                      </span>
+                      , participando do desenvolvimento de interfaces web e
+                      melhorias de usabilidade em ambiente remoto utilizando{' '}
+                      <span className="font-semibold text-gray-800 dark:text-gray-200">
+                        metodologias ágeis
+                      </span>
+                      .
+                    </p>
+                    <p>
+                      Também possuo{' '}
+                      <span className="font-semibold text-gray-800 dark:text-gray-200">
+                        8 anos de experiência profissional na indústria têxtil
+                      </span>
+                      {' '}
+                      <span className="font-semibold text-purple-600 dark:text-purple-400">
+                        (Companhia de Fiação e Tecidos Santo Antônio)
+                      </span>
+                      , desenvolvendo disciplina, responsabilidade, atenção aos
+                      detalhes e trabalho em equipe — habilidades que aplico
+                      diariamente no desenvolvimento de software.
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>

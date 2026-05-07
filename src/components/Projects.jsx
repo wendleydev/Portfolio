@@ -8,34 +8,51 @@ import {
   BadgeCheck,
   Calendar,
   Code2,
-  Users,
 } from 'lucide-react';
 
 // Lista de projetos a serem exibidos na seção
 const projects = [
   {
-    title: 'Catálogo Web',
+    title: 'Catálogo Web (Feira Livre)',
     description:
-      'Sistema completo para gestão de feiras livres, com cadastro de feirantes, produtos e categorias.',
+      'Sistema para gestão de feirantes e produtos em uma feira municipal, com uso em campo e painel administrativo.',
+    problem:
+      'Organizar dados de feirantes/produtos e simplificar comunicação entre equipe e vendedores, com acesso rápido no celular.',
+    responsibilities:
+      'Desenvolvimento front-end inteiro da aplicação (telas, fluxos de cadastro/consulta, responsividade). Integração com Firebase (auth e dados) e hospedagem com deploy público.',
+    highlights: [
+      'Login social com Firebase Authentication (Google)',
+      'CRUD com Firestore (feirantes, produtos e categorias)',
+      'Painel admin e foco mobile-first para uso durante a feira',
+      'Integração com WhatsApp e interface com Tailwind CSS',
+    ],
     image: projeto1,
     link: 'https://feiralivre.vercel.app/',
-    github: 'https://github.com/wendleydev/catalogo-web.git',
+    github: 'https://github.com/wendleydev/catalogo-web',
     techs: ['React', 'Firebase', 'Tailwind CSS', 'JavaScript'],
     date: '2024',
-    role: 'Full Stack Developer',
-    teamSize: 'Individual',
+    role: 'Front-end · projeto autoral',
   },
   {
-    title: 'Portfólio',
+    title: 'Portfólio acadêmico (HTML, CSS e JavaScript)',
     description:
-      'Projeto acadêmico desenvolvido com HTML, CSS e JavaScript puro, com foco em estruturação de conteúdo, responsividade e design limpo.',
+      'Trabalho acadêmico em tecnologias web puras — estruturação de páginas, estilização e interações sem framework.',
+    problem:
+      'Demonstrar bases sólidas de marcação e estilo, com comportamento pontual via JavaScript, sem ferramentas de build.',
+    responsibilities:
+      'HTML semântico, CSS (layout responsivo), JavaScript vanilla para interações; deploy público para entrega.',
+    highlights: [
+      'Página(s) estruturadas em HTML semântico',
+      'CSS responsivo (layout e media queries)',
+      'Interações com JavaScript puro',
+      'Publicação via Vercel para apresentação e portfólio acadêmico',
+    ],
     image: projeto2,
     link: 'https://trabalho-academico-portfolio.vercel.app/',
-    github: 'https://github.com/wendleydev/Trabalho-Academico-Portfolio.git',
+    github: 'https://github.com/wendleydev/Trabalho-Academico-Portfolio',
     techs: ['HTML', 'CSS', 'JavaScript'],
     date: '2022',
-    role: 'Front-end Developer',
-    teamSize: 'Individual',
+    role: 'Front-end · projeto autoral',
   },
 ];
 
@@ -100,8 +117,9 @@ export default function Projects() {
             Projetos em Destaque
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Conheça alguns dos projetos que desenvolvi, aplicando as melhores
-            práticas e tecnologias modernas.
+            Hoje meu projeto com maior densidade técnica é o catálogo da feira —
+            todos têm demo e código no GitHub. Novos projetos entram conforme eu
+            for publicando repos e deploy.
           </p>
         </motion.div>
 
@@ -149,6 +167,34 @@ export default function Projects() {
                       <p className="text-gray-600 dark:text-gray-300">
                         {project.description}
                       </p>
+                      {project.problem && (
+                        <p className="text-gray-600 dark:text-gray-300 mt-3 text-sm leading-relaxed">
+                          <span className="font-semibold text-gray-800 dark:text-gray-200">
+                            Problema:{' '}
+                          </span>
+                          {project.problem}
+                        </p>
+                      )}
+                      {project.responsibilities && (
+                        <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
+                          <span className="font-semibold text-gray-800 dark:text-gray-200">
+                            Meu papel:{' '}
+                          </span>
+                          {project.responsibilities}
+                        </p>
+                      )}
+                      {project.highlights?.length > 0 && (
+                        <div className="mt-4">
+                          <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
+                            Decisões e entregas
+                          </p>
+                          <ul className="mt-2 space-y-1.5 text-sm text-gray-600 dark:text-gray-300 list-disc list-inside">
+                            {project.highlights.map((line, hi) => (
+                              <li key={hi}>{line}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
 
                     {/* Informações adicionais: data, função e tamanho da equipe */}
@@ -161,10 +207,12 @@ export default function Projects() {
                         <Code2 className="w-4 h-4" />
                         <span>{project.role}</span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Users className="w-4 h-4" />
-                        <span>{project.teamSize}</span>
-                      </div>
+                      {project.teamSize != null && (
+                        <div className="flex items-center gap-1">
+                          <Users className="w-4 h-4" />
+                          <span>{project.teamSize}</span>
+                        </div>
+                      )}
                     </div>
 
                     {/* Tecnologias utilizadas */}

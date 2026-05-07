@@ -39,13 +39,18 @@ const certificates = [
       "Formação completa com foco prático em front-end, back-end, WordPress e versionamento com Git e GitHub.",
   },
   {
-    title: "Comunicação e Oratória",
+    title: "HTML5 e CSS3",
     issuer: "Udemy",
     date: "2024",
     link: "https://www.udemy.com/certificate/UC-d89cfa30-18f8-48a8-bf7a-7d4aafc41651/",
-    skills: ["Oratória", "Comunicação Escrita", "Expressão Corporal"],
+    skills: [
+      "HTML5 semântico",
+      "CSS3 avançado",
+      "Layouts responsivos",
+      "Flexbox e Grid",
+    ],
     description:
-      "Técnicas para melhorar a comunicação verbal, escrita e corporal no ambiente pessoal e profissional.",
+      "Do básico ao avançado em marcação e estilização, com foco em páginas responsivas e boas bases de UI.",
   },
 ];
 
