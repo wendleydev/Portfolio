@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import projeto1 from '../assets/projeto1.webp';
 import projeto2 from '../assets/projeto2.webp';
+import projeto3 from '../assets/projeto3.webp';
 import {
   ExternalLink,
   Github,
@@ -13,6 +14,34 @@ import {
 
 // Lista de projetos a serem exibidos na seção
 const projects = [
+  {
+    title: 'Extraord1nário — Blog pessoal',
+    description:
+      'Aplicação SPA em React com foco em experiência visual, navegação fluida e componentização. Utiliza React Router para roteamento dinâmico e Framer Motion para transições animadas entre páginas, com ênfase em UI moderna e responsividade.',
+    problem:
+      'Disponibilizar leitura confortável e navegação previsível (home, posts, categorias e sobre) em desktop e mobile, mantendo conteúdo estático no front com arquitetura preparada para evolução futura.',
+    responsibilities:
+      'Atuei como desenvolvedor front-end de ponta a ponta: componentização da interface, rotas e páginas com React Router, microinterações e transições com Framer Motion, estilização responsiva com Tailwind e publicação com deploy contínuo na Vercel ligado ao repositório no GitHub.',
+    highlights: [
+      'SPA com roteamento dinâmico (home, post, categorias, sobre) e rewrites para produção na Vercel',
+      'Transições animadas entre rotas com Framer Motion alinhadas à navegação',
+      'Componentização e assets via Vite para build previsível em produção',
+      'Deploy automático a partir do GitHub (integração contínua com a Vercel)',
+    ],
+    image: projeto3,
+    link: 'https://extraod1nario-blog.vercel.app/',
+    github: 'https://github.com/wendleydev/Extraod1nario-blog',
+    techs: [
+      'React 18',
+      'Vite',
+      'Tailwind CSS',
+      'React Router',
+      'Framer Motion',
+      'React Icons',
+    ],
+    date: '2026',
+    role: 'Desenvolvedor front-end · SPA autoral',
+  },
   {
     title: 'Catálogo Web (Feira Livre)',
     description:
@@ -118,8 +147,9 @@ export default function Projects() {
             Projetos em Destaque
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Hoje meu projeto com maior densidade técnica é o catálogo da feira —
-            todos têm demo e código no GitHub. Novos projetos entram conforme eu
+            Os projetos com maior densidade técnica aqui são o catálogo da feira
+            (Firebase) e o blog Extraord1nário (SPA com rotas e deploy contínuo).
+            Todos têm demo e código no GitHub. Novos projetos entram conforme eu
             for publicando repos e deploy.
           </p>
         </motion.div>
