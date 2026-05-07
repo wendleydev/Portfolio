@@ -8,6 +8,7 @@ import {
   BadgeCheck,
   Calendar,
   Code2,
+  Users,
 } from 'lucide-react';
 
 // Lista de projetos a serem exibidos na seção

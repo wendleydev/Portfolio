@@ -62,7 +62,7 @@ Portfólio pessoal desenvolvido com React, Tailwind CSS e Framer Motion, focado 
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/Wendley007/portfolio.git
+git clone https://github.com/wendleydev/portfolio.git
 cd portfolio
 ```
 
@@ -276,7 +276,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 - **Email**: wendley.dev@gmail.com
 - **LinkedIn**: [Wendley Santos](https://www.linkedin.com/in/wendley-santos-248159219/)
-- **GitHub**: [@Wendley007](https://github.com/Wendley007)
+- **GitHub**: [@wendleydev](https://github.com/wendleydev)
 - **WhatsApp**: (38) 99927-2911
 
 ---

@@ -188,7 +188,7 @@ export default function Footer() {
             </h4>
             <div className="space-y-4">
               <motion.a
-                href="mailto:wsanttossttreett@hotmail.com"
+                href="mailto:wendley.dev@gmail.com"
                 whileHover={{ x: 5, scale: 1.01 }}
                 transition={{ type: 'spring', stiffness: 400 }}
                 className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"

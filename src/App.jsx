@@ -79,7 +79,7 @@ function App() {
             image: "https://wendleydev.vercel.app/assets/perfil2.webp",
             sameAs: [
               "https://www.linkedin.com/in/wendley-santos-248159219",
-              "https://github.com/Wendley007",
+              "https://github.com/wendleydev",
               "https://wa.me/5538999272911",
             ],
             jobTitle: "Desenvolvedor Web Front-end",
