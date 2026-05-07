@@ -12,36 +12,8 @@ import {
   Users,
 } from 'lucide-react';
 
-// Lista de projetos a serem exibidos na seção
+// Lista de projetos a serem exibidos na seção (ordem: 1 feira, 2 blog, 3 portfólio acadêmico)
 const projects = [
-  {
-    title: 'Extraord1nário — Blog pessoal',
-    description:
-      'Aplicação SPA em React com foco em experiência visual, navegação fluida e componentização. Utiliza React Router para roteamento dinâmico e Framer Motion para transições animadas entre páginas, com ênfase em UI moderna e responsividade.',
-    problem:
-      'Disponibilizar leitura confortável e navegação previsível (home, posts, categorias e sobre) em desktop e mobile, mantendo conteúdo estático no front com arquitetura preparada para evolução futura.',
-    responsibilities:
-      'Atuei como desenvolvedor front-end de ponta a ponta: componentização da interface, rotas e páginas com React Router, microinterações e transições com Framer Motion, estilização responsiva com Tailwind e publicação com deploy contínuo na Vercel ligado ao repositório no GitHub.',
-    highlights: [
-      'SPA com roteamento dinâmico (home, post, categorias, sobre) e rewrites para produção na Vercel',
-      'Transições animadas entre rotas com Framer Motion alinhadas à navegação',
-      'Componentização e assets via Vite para build previsível em produção',
-      'Deploy automático a partir do GitHub (integração contínua com a Vercel)',
-    ],
-    image: projeto3,
-    link: 'https://extraod1nario-blog.vercel.app/',
-    github: 'https://github.com/wendleydev/Extraod1nario-blog',
-    techs: [
-      'React 18',
-      'Vite',
-      'Tailwind CSS',
-      'React Router',
-      'Framer Motion',
-      'React Icons',
-    ],
-    date: '2026',
-    role: 'Desenvolvedor front-end · SPA autoral',
-  },
   {
     title: 'Catálogo Web (Feira Livre)',
     description:
@@ -64,6 +36,34 @@ const projects = [
     role: 'Front-end · projeto autoral',
   },
   {
+    title: 'Extraord1nário — Blog pessoal',
+    description:
+      'Aplicação SPA em React com foco em experiência visual, navegação fluida e componentização. Utiliza React Router para roteamento dinâmico e Framer Motion para transições animadas entre páginas, com ênfase em UI moderna e responsividade.',
+    problem:
+      'Disponibilizar leitura confortável e navegação previsível (home, posts, categorias e sobre) em desktop e mobile, mantendo conteúdo estático no front com arquitetura preparada para evolução futura.',
+    responsibilities:
+      'Atuei como desenvolvedor front-end de ponta a ponta: componentização da interface, rotas e páginas com React Router, microinterações e transições com Framer Motion, estilização responsiva com Tailwind e publicação com deploy contínuo na Vercel ligado ao repositório no GitHub.',
+    highlights: [
+      'SPA com roteamento dinâmico (home, post, categorias, sobre) e rewrites para produção na Vercel',
+      'Transições animadas entre rotas com Framer Motion alinhadas à navegação',
+      'Componentização e assets via Vite para build previsível em produção',
+      'Deploy automático a partir do GitHub (integração contínua com a Vercel)',
+    ],
+    image: projeto2,
+    link: 'https://extraod1nario-blog.vercel.app/',
+    github: 'https://github.com/wendleydev/Extraod1nario-blog',
+    techs: [
+      'React 18',
+      'Vite',
+      'Tailwind CSS',
+      'React Router',
+      'Framer Motion',
+      'React Icons',
+    ],
+    date: '2026',
+    role: 'Desenvolvedor front-end · SPA autoral',
+  },
+  {
     title: 'Portfólio acadêmico (HTML, CSS e JavaScript)',
     description:
       'Trabalho acadêmico em tecnologias web puras — estruturação de páginas, estilização e interações sem framework.',
@@ -77,7 +77,7 @@ const projects = [
       'Interações com JavaScript puro',
       'Publicação via Vercel para apresentação e portfólio acadêmico',
     ],
-    image: projeto2,
+    image: projeto3,
     link: 'https://trabalho-academico-portfolio.vercel.app/',
     github: 'https://github.com/wendleydev/Trabalho-Academico-Portfolio',
     techs: ['HTML', 'CSS', 'JavaScript'],
@@ -160,133 +160,136 @@ export default function Projects() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
         >
-          {projects.map((project, index) => (
+          {projects.map(project => (
             <motion.div
-              key={index}
+              key={project.title}
               variants={projectVariants}
-              className="group relative"
+              className="group relative flex h-full flex-col"
             >
               {/* Brilho ao redor do card */}
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl opacity-20 blur transition duration-300 group-hover:opacity-30" />
 
-              {/* Card do projeto */}
-              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
-                <div className="grid lg:grid-cols-2 overflow-hidden">
-                  {/* Imagem do projeto com efeito de zoom no hover */}
-                  <div className="relative w-full h-full overflow-hidden rounded-xl">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading="lazy"
-                      width="600"
-                      height="400"
-                      className="w-full h-full object-cover transform transition duration-700 group-hover:scale-110"
-                    />
-                    {/* Gradiente escuro sobre a imagem no hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              {/* Card: capa com título sobre imagem; corpo com descrição (sem repetir) */}
+              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-300 hover:shadow-2xl dark:bg-gray-800">
+                {/* Capa: escurecimento geral + gradiente para leitura do título */}
+                <div className="relative h-48 w-full shrink-0 overflow-hidden sm:h-52">
+                  <img
+                    src={project.image}
+                    alt=""
+                    role="presentation"
+                    loading="lazy"
+                    width={600}
+                    height={320}
+                    className="absolute inset-0 h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
+                  />
+                  <div
+                    className="absolute inset-0 bg-black/55"
+                    aria-hidden
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-black/98 via-black/80 to-black/45"
+                    aria-hidden
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-5">
+                    <h3 className="text-lg font-bold leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] sm:text-xl">
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Conteúdo abaixo da imagem */}
+                <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
+                  <div>
+                    <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      {project.description}
+                    </p>
+                    {project.problem && (
+                      <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                        <span className="font-semibold text-gray-800 dark:text-gray-200">
+                          Problema:{' '}
+                        </span>
+                        {project.problem}
+                      </p>
+                    )}
+                    {project.responsibilities && (
+                      <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                        <span className="font-semibold text-gray-800 dark:text-gray-200">
+                          Meu papel:{' '}
+                        </span>
+                        {project.responsibilities}
+                      </p>
+                    )}
+                    {project.highlights?.length > 0 && (
+                      <div className="mt-4">
+                        <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
+                          Decisões e entregas
+                        </p>
+                        <ul className="mt-2 list-inside list-disc space-y-1.5 text-sm text-gray-600 dark:text-gray-300">
+                          {project.highlights.map((line, hi) => (
+                            <li key={hi}>{line}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Conteúdo do card */}
-                  <div className="p-8 space-y-6">
-                    {/* Título e descrição */}
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                        {project.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        {project.description}
-                      </p>
-                      {project.problem && (
-                        <p className="text-gray-600 dark:text-gray-300 mt-3 text-sm leading-relaxed">
-                          <span className="font-semibold text-gray-800 dark:text-gray-200">
-                            Problema:{' '}
-                          </span>
-                          {project.problem}
-                        </p>
-                      )}
-                      {project.responsibilities && (
-                        <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                          <span className="font-semibold text-gray-800 dark:text-gray-200">
-                            Meu papel:{' '}
-                          </span>
-                          {project.responsibilities}
-                        </p>
-                      )}
-                      {project.highlights?.length > 0 && (
-                        <div className="mt-4">
-                          <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
-                            Decisões e entregas
-                          </p>
-                          <ul className="mt-2 space-y-1.5 text-sm text-gray-600 dark:text-gray-300 list-disc list-inside">
-                            {project.highlights.map((line, hi) => (
-                              <li key={hi}>{line}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+                  <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-400">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="h-4 w-4 shrink-0" />
+                      <span>{project.date}</span>
                     </div>
-
-                    {/* Informações adicionais: data, função e tamanho da equipe */}
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        <span>{project.date}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Code2 className="w-4 h-4" />
-                        <span>{project.role}</span>
-                      </div>
-                      {project.teamSize != null && (
-                        <div className="flex items-center gap-1">
-                          <Users className="w-4 h-4" />
-                          <span>{project.teamSize}</span>
-                        </div>
-                      )}
+                    <div className="flex min-w-0 items-start gap-1">
+                      <Code2 className="mt-0.5 h-4 w-4 shrink-0" />
+                      <span className="leading-snug">{project.role}</span>
                     </div>
+                    {project.teamSize != null && (
+                      <div className="flex items-center gap-1">
+                        <Users className="h-4 w-4 shrink-0" />
+                        <span>{project.teamSize}</span>
+                      </div>
+                    )}
+                  </div>
 
-                    {/* Tecnologias utilizadas */}
-                    <motion.div
-                      className="flex flex-wrap gap-2"
-                      variants={containerVariants}
+                  <motion.div
+                    className="flex flex-wrap gap-2"
+                    variants={containerVariants}
+                  >
+                    {project.techs.map((tech, idx) => (
+                      <motion.span
+                        key={idx}
+                        variants={techBadgeVariants}
+                        className="rounded-full bg-gradient-to-r from-purple-100 to-pink-100 px-3 py-1 text-sm font-medium text-purple-800 backdrop-blur-sm dark:from-purple-900/40 dark:to-pink-900/40 dark:text-purple-200"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </motion.div>
+
+                  <div className="mt-auto flex flex-wrap gap-3 pt-1">
+                    <motion.a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all min-[400px]:flex-initial"
                     >
-                      {project.techs.map((tech, idx) => (
-                        <motion.span
-                          key={idx}
-                          variants={techBadgeVariants}
-                          className="px-3 py-1 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/40 dark:to-pink-900/40 text-purple-800 dark:text-purple-200 rounded-full text-sm font-medium backdrop-blur-sm"
-                        >
-                          {tech}
-                        </motion.span>
-                      ))}
-                    </motion.div>
-
-                    {/* Botões de visualização e código-fonte */}
-                    <div className="flex gap-4">
-                      <motion.a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
-                      >
-                        <ExternalLink size={18} />
-                        Ver Projeto
-                      </motion.a>
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 px-6 py-3 bg-gray-800 dark:bg-gray-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
-                      >
-                        <Github size={18} />
-                        Código
-                      </motion.a>
-                    </div>
+                      <ExternalLink size={18} />
+                      Ver projeto
+                    </motion.a>
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all dark:bg-gray-700 min-[400px]:flex-initial"
+                    >
+                      <Github size={18} />
+                      Código
+                    </motion.a>
                   </div>
                 </div>
               </div>
