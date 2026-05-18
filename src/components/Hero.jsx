@@ -49,14 +49,14 @@ export default function Hero() {
         alt="Fundo com foto do Wendley"
         loading="eager"
         fetchpriority="high"
-        className="absolute inset-0 w-full h-full object-cover z-0 hidden sm:block"
+        className="absolute inset-0 w-full h-full object-cover z-0 hidden sm:block opacity-[0.88]"
         decoding="async"
       />
       <img
         src={perfilMobile}
         alt="Fundo mobile"
         loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover z-0 block sm:hidden"
+        className="absolute inset-0 w-full h-full object-cover z-0 block sm:hidden opacity-[0.82]"
         decoding="async"
       />
 
@@ -65,8 +65,9 @@ export default function Hero() {
         <div className="absolute inset-0 bg-grid-pattern"></div>
       </div>
 
-      {/* Gradiente escuro para contraste */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent z-20"></div>
+      {/* Gradiente escuro — mais peso no conteúdo, foto menos dominante */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/30 z-20 sm:to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-20 sm:hidden" />
 
       {/* Conteúdo principal */}
       <div className="relative z-30 container mx-auto px-4 mt-4 flex items-center min-h-screen">
@@ -78,9 +79,10 @@ export default function Hero() {
         >
           {/* Texto estático para LCP */}
           {!typing && (
-            <div className="mb-6">
-              <h3 className="bg-gradient-to-r from-white text-transparent via-red-500 to-purple-600 bg-clip-text text-2xl sm:text-3xl font-semibold">
-                Olá, eu sou Wendley 👋
+            <div className="mb-4 sm:mb-6">
+              <h3 className="bg-gradient-to-r from-white text-transparent via-red-500 to-purple-600 bg-clip-text text-xl sm:text-2xl md:text-3xl font-semibold leading-snug">
+                <span className="block sm:inline">Olá, eu sou</span>{' '}
+                <span className="block sm:inline">Wendley 👋</span>
               </h3>
             </div>
           )}
@@ -91,9 +93,9 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="mb-6"
+              className="mb-4 sm:mb-6"
             >
-              <h3 className="bg-gradient-to-r from-white text-transparent via-red-500 to-purple-600 bg-clip-text text-2xl sm:text-3xl font-semibold">
+              <h3 className="bg-gradient-to-r from-white text-transparent via-red-500 to-purple-600 bg-clip-text text-xl sm:text-2xl md:text-3xl font-semibold leading-snug">
                 <Typewriter
                   onInit={typewriter => {
                     typewriter
@@ -122,9 +124,9 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="mb-8 min-h-[4.5rem] sm:min-h-[6rem]"
+                  className="mb-6 sm:mb-8 min-h-[3.25rem] sm:min-h-[4.5rem] md:min-h-[6rem]"
                 >
-                  <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-red-500 to-purple-600 bg-clip-text text-transparent leading-tight">
+                  <h1 className="font-sans text-2xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-red-500 to-purple-600 bg-clip-text text-transparent leading-snug sm:leading-tight">
                     <Typewriter
                       onInit={typewriter => {
                         typewriter
@@ -146,13 +148,19 @@ export default function Hero() {
           </AnimatePresence>
 
           {/* Pitch curto — detalhes na seção Sobre */}
-          <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl">
-            Formado em Sistemas de Informação · Front-end com{' '}
-            <span className="text-gray-100">React</span>,{' '}
-            <span className="text-gray-100">Tailwind</span> e{' '}
-            <span className="text-gray-100">Firebase</span> · interfaces
-            rápidas, responsivas e código organizado.
-          </p>
+          <div className="text-gray-300 text-xs sm:text-sm leading-relaxed max-w-2xl space-y-1.5 sm:space-y-1">
+            <p>Formado em Sistemas de Informação</p>
+            <p>
+              Front-end com{' '}
+              <span className="text-gray-100">React</span>,{' '}
+              <span className="text-gray-100">Tailwind</span> e{' '}
+              <span className="text-gray-100">Firebase</span>
+            </p>
+            <p className="text-gray-200">
+              Foco em interfaces responsivas, usabilidade e aplicações web
+              modernas.
+            </p>
+          </div>
 
           {/* Botões */}
           <motion.div
