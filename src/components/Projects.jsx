@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import projeto1 from '../assets/projeto1.webp';
 import projeto2 from '../assets/projeto2.webp';
 import projeto3 from '../assets/projeto3.webp';
+import projeto4 from '../assets/projeto4.webp';
 import {
   ExternalLink,
   Github,
@@ -10,10 +11,45 @@ import {
   Calendar,
   Code2,
   Users,
+  Target,
+  UserCog,
+  CheckCircle2,
+  Sparkles,
 } from 'lucide-react';
 
-// Lista de projetos a serem exibidos na seção (ordem: 1 feira, 2 blog, 3 portfólio acadêmico)
+// Lista de projetos a serem exibidos na seção (ordem: 1 SalonFlow, 2 feira, 3 blog, 4 portfólio acadêmico)
 const projects = [
+  {
+    title: 'SalonFlow Dashboard',
+    description:
+      'Aplicação SPA desenvolvida com React + Vite para simular um sistema de gerenciamento de salões de beleza e barbearias, com autenticação, rotas protegidas e dashboard responsivo. Desenvolvida para consolidar conhecimentos em React e arquitetura de aplicações front-end.',
+    problem:
+      'Desenvolver um sistema de gerenciamento que pudesse ser testado por qualquer visitante sem comprometer os dados reais armazenados no Firestore, preservando a integridade da aplicação por meio de um controle de acesso entre administrador e usuários em modo demonstração.',
+    responsibilities:
+      'Desenvolvi o front-end da aplicação utilizando React, Firebase Authentication e Firestore, implementando autenticação, rotas protegidas, CRUDs, filtros, estados de carregamento e um modelo de acesso com perfis administrador e demonstração. Também configurei o deploy contínuo na Vercel e os metadados básicos de SEO.',
+    highlights: [
+      'Autenticação com Firebase Authentication (e-mail/senha e Google), persistência de sessão e proteção de rotas',
+      'CRUD de clientes, serviços e agendamentos com filtros por status e data',
+      'Separação entre modo administrador (Firestore) e modo demonstração (localStorage)',
+      'Cadastro protegido por código de acesso',
+      'Página 404 personalizada',
+      'Configuração básica de SEO (Open Graph, Twitter Card, sitemap e robots)',
+    ],
+    image: projeto4,
+    link: 'https://salonflow-dashboard.vercel.app',
+    github: 'https://github.com/wendleydev/Salonflow',
+    techs: [
+      'React',
+      'Vite',
+      'JavaScript',
+      'Tailwind CSS',
+      'React Router DOM',
+      'Firebase',
+      'Firestore',
+    ],
+    date: '2026',
+    role: 'Desenvolvedor front-end · projeto autoral',
+  },
   {
     title: 'Catálogo Web (Feira Livre)',
     description:
@@ -147,10 +183,8 @@ export default function Projects() {
             Projetos em Destaque
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Os projetos com maior densidade técnica aqui são o catálogo da feira
-            (Firebase) e o blog Extraord1nário (SPA com rotas e deploy contínuo).
-            Todos têm demo e código no GitHub. Novos projetos entram conforme eu
-            for publicando repos e deploy.
+            Uma seleção dos meus projetos, todos com demo e código no GitHub.
+            Novos projetos entram conforme eu for publicando.
           </p>
         </motion.div>
 
@@ -168,89 +202,121 @@ export default function Projects() {
               variants={projectVariants}
               className="group relative flex h-full flex-col"
             >
-              {/* Brilho ao redor do card */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl opacity-20 blur transition duration-300 group-hover:opacity-30" />
+              {/* Brilho ao redor do card (mais intenso no projeto em destaque) */}
+              <div
+                className={`absolute -inset-1 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 blur transition duration-300 ${
+                  project.featured
+                    ? 'opacity-40 group-hover:opacity-60'
+                    : 'opacity-20 group-hover:opacity-30'
+                }`}
+              />
 
               {/* Card: capa com título sobre imagem; corpo com descrição (sem repetir) */}
-              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-300 hover:shadow-2xl dark:bg-gray-800">
+              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:bg-gray-800 dark:ring-white/10">
                 {/* Capa: escurecimento geral + gradiente para leitura do título */}
                 <div className="relative h-48 w-full shrink-0 overflow-hidden sm:h-52">
                   <img
                     src={project.image}
-                    alt=""
-                    role="presentation"
+                    alt={`Prévia do projeto ${project.title}`}
                     loading="lazy"
                     width={600}
                     height={320}
                     className="absolute inset-0 h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
                   />
-                  <div
-                    className="absolute inset-0 bg-black/55"
-                    aria-hidden
-                  />
+                  <div className="absolute inset-0 bg-black/55" aria-hidden />
                   <div
                     className="absolute inset-0 bg-gradient-to-t from-black/98 via-black/80 to-black/45"
                     aria-hidden
                   />
-                  <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-5">
+
+                  {/* Selo de destaque */}
+                  {project.featured && (
+                    <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-2.5 py-1 text-xs font-semibold text-white shadow-lg">
+                      <Sparkles className="h-3.5 w-3.5" aria-hidden />
+                      Destaque
+                    </span>
+                  )}
+
+                  <div className="absolute inset-0 flex flex-col justify-end gap-2 p-4 sm:p-5">
                     <h3 className="text-lg font-bold leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] sm:text-xl">
                       {project.title}
                     </h3>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-200">
+                      <span className="inline-flex items-center gap-1">
+                        <Calendar className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                        {project.date}
+                      </span>
+                      <span className="inline-flex min-w-0 items-center gap-1">
+                        <Code2 className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                        <span className="truncate">{project.role}</span>
+                      </span>
+                      {project.teamSize != null && (
+                        <span className="inline-flex items-center gap-1">
+                          <Users className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                          {project.teamSize}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
 
                 {/* Conteúdo abaixo da imagem */}
                 <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
-                  <div>
-                    <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                      {project.description}
-                    </p>
-                    {project.problem && (
-                      <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                        <span className="font-semibold text-gray-800 dark:text-gray-200">
-                          Problema:{' '}
-                        </span>
-                        {project.problem}
-                      </p>
-                    )}
-                    {project.responsibilities && (
-                      <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                        <span className="font-semibold text-gray-800 dark:text-gray-200">
-                          Meu papel:{' '}
-                        </span>
-                        {project.responsibilities}
-                      </p>
-                    )}
-                    {project.highlights?.length > 0 && (
-                      <div className="mt-4">
-                        <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
-                          Decisões e entregas
-                        </p>
-                        <ul className="mt-2 list-inside list-disc space-y-1.5 text-sm text-gray-600 dark:text-gray-300">
-                          {project.highlights.map((line, hi) => (
-                            <li key={hi}>{line}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
+                  <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                    {project.description}
+                  </p>
 
-                  <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-400">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4 shrink-0" />
-                      <span>{project.date}</span>
+                  {(project.problem || project.responsibilities) && (
+                    <div className="space-y-3 rounded-xl bg-gray-50 p-4 dark:bg-gray-900/40">
+                      {project.problem && (
+                        <div className="flex gap-2.5">
+                          <Target
+                            className="mt-0.5 h-4 w-4 shrink-0 text-purple-500"
+                            aria-hidden
+                          />
+                          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                            <span className="font-semibold text-gray-800 dark:text-gray-200">
+                              Problema:{' '}
+                            </span>
+                            {project.problem}
+                          </p>
+                        </div>
+                      )}
+                      {project.responsibilities && (
+                        <div className="flex gap-2.5">
+                          <UserCog
+                            className="mt-0.5 h-4 w-4 shrink-0 text-pink-500"
+                            aria-hidden
+                          />
+                          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                            <span className="font-semibold text-gray-800 dark:text-gray-200">
+                              Meu papel:{' '}
+                            </span>
+                            {project.responsibilities}
+                          </p>
+                        </div>
+                      )}
                     </div>
-                    <div className="flex min-w-0 items-start gap-1">
-                      <Code2 className="mt-0.5 h-4 w-4 shrink-0" />
-                      <span className="leading-snug">{project.role}</span>
+                  )}
+
+                  {project.highlights?.length > 0 && (
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
+                        Decisões e entregas
+                      </p>
+                      <ul className="mt-2 space-y-1.5 text-sm text-gray-600 dark:text-gray-300">
+                        {project.highlights.map((line, hi) => (
+                          <li key={hi} className="flex gap-2">
+                            <CheckCircle2
+                              className="mt-0.5 h-4 w-4 shrink-0 text-purple-500"
+                              aria-hidden
+                            />
+                            <span>{line}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    {project.teamSize != null && (
-                      <div className="flex items-center gap-1">
-                        <Users className="h-4 w-4 shrink-0" />
-                        <span>{project.teamSize}</span>
-                      </div>
-                    )}
-                  </div>
+                  )}
 
                   <motion.div
                     className="flex flex-wrap gap-2"
@@ -272,22 +338,24 @@ export default function Projects() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Ver o projeto ${project.title} (abre em nova aba)`}
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.98 }}
-                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all min-[400px]:flex-initial"
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800 min-[400px]:flex-initial"
                     >
-                      <ExternalLink size={18} />
+                      <ExternalLink size={18} aria-hidden />
                       Ver projeto
                     </motion.a>
                     <motion.a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Ver o código do projeto ${project.title} no GitHub (abre em nova aba)`}
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.98 }}
-                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all dark:bg-gray-700 min-[400px]:flex-initial"
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 dark:bg-gray-700 dark:focus-visible:ring-offset-gray-800 min-[400px]:flex-initial"
                     >
-                      <Github size={18} />
+                      <Github size={18} aria-hidden />
                       Código
                     </motion.a>
                   </div>
